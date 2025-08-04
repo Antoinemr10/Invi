@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sobre Animado</title>
+  <meta charset="UTF-8">
+  <title>Invitación de Boda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #f0f0f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      background: url('https://i.ibb.co/yFbxWMbq/Imagen-de-Whats-App-2025-08-04-a-las-08-20-10-f4badf95.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     .sobre-container {
       perspective: 1000px;
       cursor: pointer;
+      margin-top: 60px;
+      display: flex;
+      justify-content: center;
     }
 
     .sobre {
@@ -46,7 +47,7 @@
     }
 
     .solapa::before {
-      content: "❤";
+      content: "\2764";
       position: absolute;
       top: 20px;
       left: 50%;
@@ -81,18 +82,187 @@
     .sobre.abierto .contenido {
       transform: translateY(0%);
     }
+
+    .invitation {
+      background-color: rgba(255, 240, 245, 0.95);
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .image-behind-names {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.2;
+      width: 250px;
+      z-index: 0;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      color: #b30059;
+      margin-top: -10px;
+      font-weight: bold;
+    }
+
+    .quote {
+      font-style: italic;
+      margin: 30px auto;
+      max-width: 600px;
+      font-size: 18px;
+      color: #444;
+    }
+
+    .date-location {
+      font-size: 22px;
+      color: #5c003f;
+      margin-top: 20px;
+      font-weight: 500;
+    }
+
+    .timer {
+      margin-top: 40px;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(255, 224, 235, 0.7);
+      display: inline-block;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .timer-message {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #660033;
+    }
+
+    .gift-icon {
+      margin-top: 40px;
+    }
+
+    .gift-icon img {
+      width: 48px;
+      height: 48px;
+      opacity: 0.8;
+    }
+
+    .confirm-btn {
+      margin-top: 30px;
+    }
+
+    .confirm-btn a {
+      background-color: #b30059;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    iframe {
+      margin-top: 30px;
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 12px;
+    }
   </style>
 </head>
 <body>
 
-<div class="sobre-container" onclick="document.querySelector('.sobre').classList.toggle('abierto')">
-  <div class="sobre">
-    <div class="solapa"></div>
-    <div class="contenido">
-      ¡Estás cordialmente invitado!
+  <div class="sobre-container" onclick="document.querySelector('.sobre').classList.toggle('abierto')">
+    <div class="sobre">
+      <div class="solapa"></div>
+      <div class="contenido">
+        ¡Estás cordialmente invitado!
+      </div>
     </div>
   </div>
-</div>
 
+  <div class="invitation">
+    <img src="https://w7.pngwing.com/pngs/166/471/png-transparent-wedding-dress-bride-engagement-bride-photography-wedding-people-thumbnail.png" class="image-behind-names" alt="pareja novios">
+    <div class="subtitle">¡Nos casamos!</div>
+    <h1 class="names">Jorge & Maria</h1>
+    <div class="quote">
+      "En este camino de 25 años juntos, aprendimos que el amor verdadero se construye con paciencia, respeto y alegría compartida.<br><br>
+      Hoy celebramos no solo nuestro matrimonio, sino todo lo vivido. Y lo hacemos de la mejor manera: con quienes más amamos.<br><br>
+      Gracias por formar parte de esta historia de amor que sigue escribiéndose con esperanza y felicidad."
+    </div>
+    <div class="date-location">
+      📅 18 de octubre de 2025 • 6:00 PM<br>
+      • <strong>Etiqueta (formal)</strong>
+    </div>
+    <div class="timer">
+      <div class="timer-message" id="timerMessage"></div>
+      <span id="days"></span>d :
+      <span id="hours"></span>h :
+      <span id="minutes"></span>m :
+      <span id="seconds"></span>s
+    </div>
+    <div class="gift-icon">
+      <img src="https://cdn-icons-png.flaticon.com/512/25/25647.png" alt="icono de sobre">
+    </div>
+    <div class="confirm-btn">
+      <a href="https://forms.gle/TUFORMULARIO" target="_blank">Confirmar asistencia</a>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px;">
+      <div style="text-align: center; width: 350px;">
+        <p style="font-weight: bold; margin: 5px 0;">Ceremonia - Iglesia San Francisco de Asís</p>
+        <p style="margin: 0 0 10px 0;">6:00 PM</p>
+        <iframe src="https://www.google.com/maps?q=Iglesia+San+Francisco+de+As%C3%ADs,+Rinc%C3%B3n+de+La+Sierra,+Guadalupe,+Nuevo+Le%C3%B3n&output=embed" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div style="text-align: center; width: 350px;">
+        <p style="font-weight: bold; margin: 5px 0;">Recepción - María Isabel Eventos Salon 2</p>
+        <p style="margin: 0 0 10px 0;">8:00 PM</p>
+        <iframe src="https://www.google.com/maps?q=Presa+del+Infiernillo+MZ15+LT5,+Cerro+de+La+Silla,+67190+Guadalupe,+Nuevo+Le%C3%B3n&output=embed" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const timerMessage = document.getElementById('timerMessage');
+  const targetDate = new Date("2025-10-16T20:00:00").getTime();
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById('days').innerHTML = days;
+    document.getElementById('hours').innerHTML = hours;
+    document.getElementById('minutes').innerHTML = minutes;
+    document.getElementById('seconds').innerHTML = seconds;
+
+    let msg = "";
+    if (distance <= 0) msg = "¡El gran momento ha llegado!";
+    else if (days === 0 && hours <= 5) msg = "¡Faltan solo unas horas para celebrar!";
+    else if (days === 0) msg = "¡Hoy es el día! ¡Qué emoción!";
+    else if (days <= 3) msg = "¡Ya casi! Todo está listo para el gran día.";
+    else if (days <= 30) msg = "La cuenta regresiva ha comenzado...";
+    else if (days <= 60) msg = "¡Nos acercamos al gran día!";
+    else msg = "¡Estamos preparando algo muy especial!";
+
+    timerMessage.textContent = msg;
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
 </body>
 </html>
