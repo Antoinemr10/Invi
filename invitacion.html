@@ -2,157 +2,248 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitación de Boda</title>
+  <link href="https://i.ibb.co/HLfm5RFq/Imagen-de-Whats-App-2025-08-03-a-las-13-31-12-22b6f528.jpg" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: linear-gradient(#f7f0e8, #e9d5c8);
-      font-family: 'Georgia', serif;
+      font-family: 'Playfair Display', serif;
+      background: url('https://i.ibb.co/yFbxWMbq/Imagen-de-Whats-App-2025-08-04-a-las-08-20-10-f4badf95.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
-    .envelope-container {
+    .invitation {
+      background-color: rgba(255, 240, 245, 0.95);
+      max-width: 800px;
+      margin: auto;
+      padding: 40px;
+      text-align: center;
       position: relative;
-      width: 300px;
-      height: 220px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
       cursor: pointer;
-      perspective: 1000px;
     }
 
-    .envelope {
-      width: 100%;
-      height: 100%;
+    .names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 64px;
       position: relative;
-      background: #b38867;
-      border-radius: 5px;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 1;
     }
 
-    .flap {
+    .image-behind-names {
       position: absolute;
-      width: 100%;
-      height: 50%;
-      background: #a3734c;
-      top: 0;
-      left: 0;
-      transform-origin: top;
-      transition: transform 0.6s ease;
-      z-index: 3;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-    }
-
-    .card {
-      position: absolute;
-      top: 60%;
+      top: 40px;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 260px;
-      height: 180px;
-      background: white;
-      padding: 20px;
-      box-sizing: border-box;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      opacity: 0;
-      transition: top 1s ease, opacity 1s ease;
-      z-index: 2;
+      transform: translateX(-50%);
+      opacity: 0.2;
+      width: 250px;
+      z-index: 0;
     }
 
-    .envelope.open .flap {
-      transform: rotateX(-180deg);
+    .subtitle {
+      font-size: 28px;
+      color: #b30059;
+      margin-top: -10px;
+      font-weight: bold;
     }
 
-    .envelope.open .card {
-      top: -40%;
-      opacity: 1;
-    }
-
-    .card h1 {
-      margin: 0;
-      font-size: 20px;
+    .quote {
+      font-style: italic;
+      margin: 30px auto;
+      max-width: 600px;
+      font-size: 18px;
       color: #444;
     }
 
-    .card p {
-      font-size: 14px;
-      color: #666;
-      margin-top: 10px;
+    .divider {
+      height: 1px;
+      background-color: #ccc;
+      margin: 30px auto;
+      width: 60%;
+    }
+
+    .date-location {
+      font-size: 22px;
+      color: #5c003f;
+      margin-top: 20px;
+      font-weight: 500;
     }
 
     .timer {
-      margin-top: 15px;
+      margin-top: 40px;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(255, 224, 235, 0.7);
+      display: inline-block;
+      font-size: 24px;
       font-weight: bold;
-      color: #8b5e3c;
+      color: #333;
+    }
+
+    .timer-message {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #660033;
+    }
+
+    .gift-icon {
+      margin-top: 40px;
+    }
+
+    .gift-icon img {
+      width: 48px;
+      height: 48px;
+      opacity: 0.8;
+    }
+
+    .confirm-btn {
+      margin-top: 30px;
+    }
+
+    .confirm-btn a {
+      background-color: #b30059;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    iframe {
+      margin-top: 30px;
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 12px;
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="envelope-container" onclick="openEnvelope()">
-    <div class="envelope" id="envelope">
-      <div class="flap"></div>
-      <div class="card">
-        <h1>¡Nos Casamos!</h1>
-        <p>Con mucha emoción te invitamos a celebrar nuestra boda.<br><br>
-        💍 Jorge & Valeria 💍<br><br>
-        📅 Sábado, 7 de diciembre de 2025<br>
-        🕓 4:00 PM<br>
-        📍 Hacienda Flor del Valle</p>
-        <div class="timer" id="countdown"></div>
+
+  <div class="invitation" id="invitation">
+    <img src="https://w7.pngwing.com/pngs/166/471/png-transparent-wedding-dress-bride-engagement-bride-photography-wedding-people-thumbnail.png" class="image-behind-names" alt="pareja novios">
+
+    <div class="subtitle">¡Nos casamos!</div>
+
+    <h1 class="names">Jorge &  Maria</h1>
+
+    <div class="quote">
+      "En este camino de 25 años juntos, aprendimos que el amor verdadero se construye con paciencia, respeto y alegría compartida.<br><br>
+      Hoy celebramos no solo nuestro matrimonio, sino todo lo vivido. Y lo hacemos de la mejor manera: con quienes más amamos.<br><br>
+      Gracias por formar parte de esta historia de amor que sigue escribiéndose con esperanza y felicidad."
+    </div>
+
+    <div class="date-location" style="font-family:'Playfair Display', serif; font-size:22px; color:#5c003f; margin:20px 0;">
+      📅 18 de octubre de 2025 • 6:00 PM<br>
+      • <strong>Etiqueta (formal)</strong>
+    </div>
+
+    <div class="timer">
+      <div class="timer-message" id="timerMessage"></div>
+      <span id="days"></span>d :
+      <span id="hours"></span>h :
+      <span id="minutes"></span>m :
+      <span id="seconds"></span>s
+    </div>
+
+    <div class="gift-icon">
+     <img src="https://cdn-icons-png.flaticon.com/512/25/25647.png" alt="icono de sobre">
+    </div>
+
+    <div class="confirm-btn">
+      <a href="https://forms.gle/TUFORMULARIO" target="_blank">Confirmar asistencia</a>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px;">
+      <!-- Mapa 1: Ceremonia -->
+      <div style="text-align: center; width: 350px;">
+        <p style="font-weight: bold; margin: 5px 0;"> Ceremonia - Iglesia San Francisco de Asís</p>
+        <p style="margin: 0 0 10px 0;">6:00 PM</p>
+        <iframe 
+          style="width: 100%; height: 300px; border: 0;"
+          src="https://www.google.com/maps?q=Iglesia+San+Francisco+de+Asís,+Rincón+de+La+Sierra,+Guadalupe,+Nuevo+León&output=embed"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+      <!-- Mapa 2: Recepción -->
+      <div style="text-align: center; width: 350px;">
+        <p style="font-weight: bold; margin: 5px 0;">Recepción - María Isabel Eventos Salon 2</p>
+        <p style="margin: 0 0 10px 0;">8:00 PM</p>
+        <iframe 
+          style="width: 100%; height: 300px; border: 0;"
+          src="https://www.google.com/maps?q=María+Isabel+Eventos,+Guadalupe,+Nuevo+León&output=embed"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
       </div>
     </div>
   </div>
 
+  <!-- Iframe oculto para reproducir música -->
+  <iframe
+    id="yt-audio"
+    style="width:0; height:0; border:none; visibility:hidden;"
+    src=""
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+  ></iframe>
+
   <script>
-    let opened = false;
-    function openEnvelope() {
-      if (!opened) {
-        document.getElementById('envelope').classList.add('open');
-        opened = true;
-      }
-    }
+    // Cuenta regresiva
+    const timerMessage = document.getElementById('timerMessage');
+    const targetDate = new Date("2025-10-16T20:00:00").getTime();
 
-    const countDownDate = new Date("Dec 7, 2025 16:00:00").getTime();
-
-    const x = setInterval(function() {
+    function updateTimer() {
       const now = new Date().getTime();
-      const distance = countDownDate - now;
+      const distance = targetDate - now;
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      const countdownText = `${days} días, ${hours}h ${minutes}m ${seconds}s`;
+      document.getElementById('days').innerHTML = days;
+      document.getElementById('hours').innerHTML = hours;
+      document.getElementById('minutes').innerHTML = minutes;
+      document.getElementById('seconds').innerHTML = seconds;
 
-      document.getElementById("countdown").innerHTML = countdownText;
-
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("countdown").innerHTML = "¡Es hoy!";
+      let msg = "";
+      if (distance <= 0) {
+        msg = "¡El gran momento ha llegado!";
+      } else if (days === 0 && hours <= 5) {
+        msg = "¡Faltan solo unas horas para celebrar!";
+      } else if (days === 0) {
+        msg = "¡Hoy es el día! ¡Qué emoción!";
+      } else if (days <= 3) {
+        msg = "¡Ya casi! Todo está listo para el gran día.";
+      } else if (days <= 30) {
+        msg = "La cuenta regresiva ha comenzado...";
+      } else if (days <= 60) {
+        msg = "¡Nos acercamos al gran día!";
+      } else {
+        msg = "¡Estamos preparando algo muy especial!";
       }
-    }, 1000);
+
+      timerMessage.textContent = msg;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // Música se activa solo al hacer clic en la invitación
+    const invitation = document.getElementById('invitation');
+    const ytAudio = document.getElementById('yt-audio');
+
+    invitation.addEventListener('click', () => {
+      if (!ytAudio.src) {
+        ytAudio.src = "https://www.youtube.com/embed/SjYecEQFL0U?autoplay=1&loop=1&playlist=SjYecEQFL0U";
+      }
+    });
   </script>
-</body>
-<body>
-
-  <h1>Mi sitio</h1>
-
-  <iframe 
-    width="0" 
-    height="0" 
-    src="https://youtu.be/SjYecEQFL0U?si=NnmPdScAcL0twT4R" 
-    frameborder="0" 
-    allow="autoplay; encrypted-media" 
-    allowfullscreen>
-  </iframe>
-
-  <p>Contenido...</p>
 
 </body>
 </html>
-
