@@ -1,109 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Invitación Boda</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sobre Animado</title>
   <style>
     body {
-      background: #f8f8f8;
+      background: #f0f0f5;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
     }
 
-    .envelope {
-      position: relative;
-      width: 300px;
-      height: 200px;
+    .sobre-container {
       perspective: 1000px;
       cursor: pointer;
     }
 
-    .flap {
-      width: 100%;
-      height: 100%;
+    .sobre {
+      position: relative;
+      width: 280px;
+      height: 180px;
       background: #fff;
-      border: 2px solid #d3d3d3;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+    }
+
+    .solapa {
       position: absolute;
-      transform-origin: top;
-      transition: transform 1s;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: #c33;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transition: transform 1s ease;
       z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
-    .flap::before {
-      content: '❤️';
-      font-size: 28px;
+    .solapa::before {
+      content: "❤";
       position: absolute;
-      top: 10px;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
-    .content {
+    .contenido {
+      position: absolute;
+      bottom: 0;
       width: 100%;
       height: 100%;
-      background: #fff;
-      border: 2px solid #d3d3d3;
+      background: #fff0f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #333;
       padding: 20px;
-      box-sizing: border-box;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s, transform 1s;
-      z-index: 1;
       text-align: center;
+      transform: translateY(100%);
+      transition: transform 1s ease;
+      z-index: 1;
     }
 
-    .envelope.open .flap {
-      transform: rotateX(-150deg);
+    .sobre.abierto .solapa {
+      transform: rotateX(-120deg);
     }
 
-    .envelope.open .content {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #b66b6b;
-    }
-
-    .location {
-      margin: 12px 0;
-    }
-
-    .location a {
-      text-decoration: none;
-      color: #0077cc;
+    .sobre.abierto .contenido {
+      transform: translateY(0%);
     }
   </style>
 </head>
 <body>
 
-<div class="envelope" onclick="this.classList.toggle('open')">
-  <div class="flap"></div>
-  <div class="content">
-    <h2>¡Nos casamos!</h2>
-    <p>Estás cordialmente invitado a nuestra boda</p>
-    <div class="location">
-      ⛪ <strong>Ceremonia religiosa:</strong><br>
-      <a href="https://maps.app.goo.gl/WfAK6cvqMYvwGowf9" target="_blank">
-        Capilla San Francisco de Asís<br>
-        8a. Avenida y Rincón de La Sierra, Guadalupe, N.L.
-      </a>
+<div class="sobre-container" onclick="document.querySelector('.sobre').classList.toggle('abierto')">
+  <div class="sobre">
+    <div class="solapa"></div>
+    <div class="contenido">
+      ¡Estás cordialmente invitado!
     </div>
-    <div class="location">
-      🎉 <strong>Salón de eventos:</strong><br>
-      <a href="https://maps.app.goo.gl/jhZsKX1tvnmc6sfZA" target="_blank">
-        Presa del Infiernillo MZ15 LT5<br>
-        Cerro de La Silla (U.C.), 67190 Guadalupe, N.L.
-      </a>
-    </div>
-    <p>Haz clic en el sobre para cerrar/abrir.</p>
   </div>
 </div>
 
