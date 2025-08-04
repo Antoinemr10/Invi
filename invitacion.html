@@ -2,87 +2,155 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boda de Jorge y Ana</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <title>Invitación de Boda</title>
   <style>
     body {
+      background: #f2f2f2;
+      font-family: 'Georgia', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: #fefefe;
-      color: #333;
+    }
+
+    .sobre {
+      width: 300px;
+      height: 200px;
+      background: #b89d74;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .sobre:hover {
+      transform: scale(1.02);
+    }
+
+    .solapa {
+      width: 0;
+      height: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-bottom: 100px solid #a98960;
+      position: absolute;
+      top: -100px;
+      left: 0;
+      z-index: 2;
+      transition: all 0.5s ease;
+    }
+
+    .contenido {
+      background: white;
+      padding: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.5s ease;
+      box-sizing: border-box;
       text-align: center;
     }
-    header {
-      background-image: url('https://your-image-url.jpg');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      padding: 100px 20px;
+
+    .sobre.abierto .solapa {
+      transform: rotateX(180deg);
     }
+
+    .sobre.abierto .contenido {
+      opacity: 1;
+      z-index: 3;
+    }
+
     h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 60px;
-      margin-bottom: 0;
+      margin: 10px 0 0;
+      font-size: 1.5em;
     }
-    h2 {
-      font-size: 24px;
-    }
-    section {
-      padding: 40px 20px;
-    }
-    .contador {
-      font-size: 28px;
-      font-weight: bold;
+
+    .lugar {
       margin-top: 20px;
+    }
+
+    .pin {
+      margin-top: 5px;
+      font-size: 0.9em;
+    }
+
+    .contador {
+      margin-top: 20px;
+      font-size: 0.8em;
+      color: #666;
+    }
+
+    .contador strong {
+      font-size: 1.1em;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Jorge & Ana</h1>
-  <h2>¡Nos casamos!</h2>
-</header>
+<div class="sobre" onclick="abrirSobre(this)">
+  <div class="solapa"></div>
+  <div class="contenido">
+    <h1>¡Estás invitado!</h1>
+    <p>Acompáñanos a celebrar nuestra unión</p>
 
-<section>
-  <h2>1 de Diciembre, 2025</h2>
-  <div class="contador" id="contador"></div>
-</section>
+    <div class="lugar">
+      <strong>Capilla:</strong><br>
+      Monterrey, 8a. Avenida y, Rincón de La Sierra, 67194 Guadalupe, N.L.<br>
+      Hora: 6:00 PM<br>
+      <div class="pin">
+        <a href="https://maps.app.goo.gl/J56LSRiZFR7guCeU9" target="_blank">📍 Ver ubicación</a>
+      </div>
+    </div>
 
-<section>
-  <h2>Ubicación</h2>
-  <p>Parroquia San Benito, Monterrey, NL</p>
-  <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="300" style="border:0;" allowfullscreen></iframe>
-</section>
+    <div class="lugar">
+      <strong>Salón de eventos:</strong><br>
+      Presa del Infiernillo MZ15 LT5, Cerro de La Silla (U.c.), 67190 Guadalupe, N.L.<br>
+      <div class="pin">
+        <a href="https://maps.app.goo.gl/yTxZZnSFRtz1NWgRA" target="_blank">📍 Ver ubicación</a>
+      </div>
+    </div>
 
-<section>
-  <h2>Confirma tu asistencia</h2>
-  <p><a href="https://forms.gle/..." target="_blank">Haz clic aquí para confirmar</a></p>
-</section>
+    <div class="contador" id="contador"></div>
+  </div>
+</div>
 
 <script>
-  // Contador regresivo
-  const fechaBoda = new Date("December 1, 2025 15:00:00").getTime();
-  const cuenta = setInterval(function() {
-    const ahora = new Date().getTime();
-    const diferencia = fechaBoda - ahora;
+  function abrirSobre(elemento) {
+    elemento.classList.toggle('abierto');
+  }
+
+  // Configura la fecha del evento (formato: año, mes-1, día, hora, minuto, segundo)
+  const fechaEvento = new Date(2025, 7, 30, 18, 0, 0); // 30 de agosto 2025, 6:00 PM
+  const contadorEl = document.getElementById('contador');
+
+  function actualizarContador() {
+    const ahora = new Date();
+    const diferencia = fechaEvento - ahora;
+
+    if (diferencia <= 0) {
+      contadorEl.innerHTML = "¡Es hoy! 🎉";
+      return;
+    }
 
     const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+    const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diferencia / 1000 / 60) % 60);
+    const segundos = Math.floor((diferencia / 1000) % 60);
 
-    document.getElementById("contador").innerHTML = 
-      `${dias} días ${horas}h ${minutos}m ${segundos}s`;
+    contadorEl.innerHTML = `
+      <strong>Faltan:</strong> ${dias} días, ${horas}h ${minutos}m ${segundos}s
+    `;
+  }
 
-    if (diferencia < 0) {
-      clearInterval(cuenta);
-      document.getElementById("contador").innerHTML = "¡Hoy es el gran día!";
-    }
-  }, 1000);
+  actualizarContador();
+  setInterval(actualizarContador, 1000);
 </script>
 
 </body>
 </html>
-
